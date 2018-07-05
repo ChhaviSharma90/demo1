@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Products Page</title>
+   <!-- script type="text/javascript">
+   function deleteProd(val){
+	   alert("in dlt");
+	  
+	  alert("productID:"+document.getElementByName("prod").value); 
+	   
+   }
+   
+   
+   </script--> 
+</head>
+<body>
+
+<table border="1">
+<thead>
+<tr>
+<!-- td>Select</td-->
+<th>Product ID</th>
+<th>Product Name</th>
+<th>Product Description</th>
+<th>Action</th>
+
+</tr>
+</thead>
+<tbody>
+<tr th:each="product : ${products}">
+<!-- td><input type="radio" th:value="${product.productId}" name="prod"></td-->
+<td th:text="${product.productId}" th:name="${product.productId}"></td>
+<td th:text="${product.productName}" th:name="${product.productName}"></td>
+<td th:text="${product.productDesc}" th:name="productDesc"></td>
+<td><a th:href="${'/deleteproduct/' + product.productId}">Delete</a>&nbsp;&nbsp;<a th:href="${'/displayProdDetails/' + product.productId}">Edit</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Add New Product</h2>
+<form action="/addproduct" method="post">
+                   
+                   Product ID:
+                        <input type="text" name="productId"/>
+                    <br>
+                   Product Name:
+                        <input type="text" name="productName"/>
+              
+                   <br>
+                   Product Description
+                        <input type="text"  name="productDesc"/>
+                 
+      <br/>           
+<input type="submit" value="Add New Product" id="btn_submit">
+<input type="reset" value="Reset" />
+</form>
+
+<!-- script src="/jquery.js" type="application/javascript"></script>
+  <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script type="application/javascript">
+
+    $(document).ready(function () {
+       $('#btn_submit').on("click",function (e) {
+    	   alert("on click add");
+          e.preventDefault();
+        
+          alert("alert2");
+           var formData = {
+        		   productId : $("#product_id").val(),
+        		   productName :  $("#product_name").val(),
+        		   productDesc :  $("#product_des").val()
+           	}
+               $.ajax({
+                   type: "POST",
+                   contentType: "application/json",
+                   url: "/addproduct",
+                   data: JSON.stringify(formData),
+                   dataType: 'json',
+                   timeout: 6000,
+                   success: function (data) {
+                      
+                           console.log("Successful insertion")
+                       
+                      
+                   }
+               console.log(result);
+               });
+           
+       });
+    });
+</script-->
+</body>
+</html>
